@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package common;
 
+// 关键：与 go.mod 的模块名 "grpc_demo" 相匹配，option go_package = "{导入路径};{包名}";
+option go_package = "grpc_demo/proto/gen;gen"; 
+
 service DemoService {
   rpc Process (Request) returns (Response) {}
 }
