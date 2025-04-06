@@ -1,23 +1,25 @@
 # gRPC 跨语言调用示例
 
-本示例演示 Python 和 Golang 服务端如何通过 gRPC 提供相同接口，以及客户端如何调用不同语言的服务端。
+gRPC能让服务端在调用跨进程的程序就像调用一个函数一样简单，它很高效。本示例演示 Python 和 Golang 服务端如何通过 gRPC 提供相同接口，以及客户端如何调用不同语言的服务端。
 
 ## 文件树结构
 ```
 grpc-demo/
-├── proto/                # Proto文件目录
+├── proto/                  # Proto文件目录
+│   ├── gen/                # 根据common.proto接口配置生成的Golang代码，被服务器和golang服务同时调用
 │   └── common.proto
-├── go-server/            # Golang主服务器
+├── go-server/              # Golang主服务器
 │   ├── main.go
 │   ├── go.mod
 │   └── proto/
-├── py-service/           # Python接口服务
+├── py-service/             # Python接口服务
+│   ├── common_pb2_grpc.py  # 根据common.proto接口配置生成的python代码，被python服务同时调用
+│   ├── common_pb2.py       # 根据common.proto接口配置生成的python代码，被python服务同时调用
 │   ├── service.py
 │   └── proto/
-└── go-service/           # Golang接口服务
-    ├── main.go
-    ├── go.mod
-    └── proto/
+└── go-service/             # Golang接口服务
+    └── main.go
+
 ```
 
 # 依赖安装
